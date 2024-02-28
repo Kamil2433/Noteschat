@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 
 
-const prefix = "justchat";
+const prefix = "Cloudnote";
 
 export default function useLocalStoragehook(key, initialvalue){
   const prefixedkey = prefix + key;
+
+ 
 
   const [value, setvalue] = useState(() => {
     const value = localStorage.getItem(prefixedkey);
@@ -27,4 +29,3 @@ export default function useLocalStoragehook(key, initialvalue){
   return [value, setvalue];
 
 }
-

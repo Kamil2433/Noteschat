@@ -34,11 +34,11 @@ setmodal(false);
       >
         <Nav variant="tabs" className="justify-content-center border-right">
           <Nav.Item className="me-3 mt-4">
-            <Nav.Link eventKey="chats_col">Chats</Nav.Link>
+            <Nav.Link eventKey="chats_col">Groups</Nav.Link>
           </Nav.Item>
           <Nav.Item className="ms-5 mt-4">
             <Nav.Link eventKey="newchat" >
-              New Chat
+            Add New Group
             </Nav.Link>
           </Nav.Item>
         </Nav>

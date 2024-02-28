@@ -24,7 +24,8 @@ export default function Navbar({id}) {
 
   return (
     <div className='sticky-top'>
-        <div className="float-start  ms-5 mt-3 h2 ">JustChat.com</div>
+     
+        <div className="float-start  ms-5 mt-3 h2 "><i class="fa-solid fa-comment" style={{color:"#588adf"}}></i>JustNotes.com</div>
         <div className="float-end mt-3">
           <span className=" mt-2   w-auto ms-3"><b>Your Id: </b>{id}</span>
           <Button className=" bi bi-clipboard ms-2 " onClick={copyToClipboard}>

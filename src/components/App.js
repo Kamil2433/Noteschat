@@ -2,32 +2,34 @@ import React from "react";
 import Login from "./Login";
 import { useState } from "react";
 import Dashboard from "./Dashboard";
-import useLocalStoragehook from "../hooks/useLocalStoragehook";
+import useLocalStoragehook  from "../hooks/useLocalStorage";
 import Navbar from "./Navbar";
 import ListGroup from 'react-bootstrap/ListGroup';
 import {Chatprovider} from "../context/Chatprovider"
-import { SocketProvider } from "../context/Sockerprovider";
-
+import LoginContext from "../context/LoginContext"
 
 export default function App() {
-  const [id, setid] = useLocalStoragehook("id","");
+  const [idforlogin, setidl] = useLocalStoragehook("idforlogin","");
   const [name, setname] = useState();
+
+  
 
 
  
 
-  return id ? (
+  return idforlogin ? (
     <div>
+
       <ListGroup>
-<SocketProvider id={id}>
-      <Navbar  id={id}  />
-      <Chatprovider ID={id}>
-   <Dashboard id={id}/>
+      <Navbar  id={idforlogin}  />
+      <Chatprovider ID={idforlogin}>
+   <Dashboard id={idforlogin}/>
     </Chatprovider>
-    </SocketProvider>
       </ListGroup>
     </div>
   ) : (
-    <Login setgivenid={setid} setgivenname={setname} />
+    <LoginContext>
+    <Login setpropid={setidl} setgivenname={setname} />
+      </LoginContext>
   );
 }

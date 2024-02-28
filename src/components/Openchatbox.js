@@ -1,80 +1,104 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { useChat } from "../context/Chatprovider";
+// import {useEffect } from "react";
+// import useLocalStoragehookfil from "../hooks/useLocalstoragefile";
+
+//       }
+//   }, []);
 
 export default function Openchatbox() {
-  
-  const{sendmessage,selectedid,chat}=useChat();
+  const { selectedgroup, chat, addnote,selectedname } = useChat();
+  // const [img,setimg]=useLocalStoragehookfil("img",[])
 
-  const [text, settext] = useState('');
+  const [text, settext] = useState("");
 
-    
+  function handlesubmit(e) {
+    e.preventDefault();
 
-  function handlesubmit(e){
-       e.preventDefault();
-       sendmessage(selectedid,text)
-       console.log(selectedid)
-       settext("")
+    addnote(text);
 
+    settext(" ");
   }
 
+  function formatDateTime(dateTimeString) {
+    const date = new Date(dateTimeString);
+    
+    // Extract date components
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const year = String(date.getFullYear()).slice(2); // Extracting last two digits
+
+    // Extract time components
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    // Formatted date and time string
+    const formattedDate = `${day}/${month}/${year}`;
+    const formattedTime = ` ${hours}:${minutes}`;
+
+    return   formattedDate + formattedTime ;
+}
+
   return (
-    <div className="d-flex flex-column flex-grow-1">
-      <div className="flex-grow-1 overflow-auto">
-
-      {chat.map((conv, index) => {
+    <>
+      <div className="d-flex flex-column flex-grow-1">
+        <div className="flex-grow-1 overflow-auto">
+          {chat.map((conv, index) => {
             // const lastMessage = selectedConversation.messages.length - 1 === index
-if(conv.id===selectedid){
+            if (conv.name === selectedname) {
+              if (conv.notes.length > 0) {
+                return conv.notes.map((note, idx) => {
+                  return (
+                    <div className="card mb-3 m-2 float-right" style={{maxWidth:"540px"}}> 
+                    <div className="row g-0"> 
+                        <div class="col-md-6"> 
+                           
+                        <div class="col-md-6"> 
+                            <div class="card-body"> 
+                              
+                                <p class="card-text"> 
+                                  {note.description}
+                                </p> 
+                                <p class="card-text"> 
+                                    <small class="text-muted"> 
+                                       {formatDateTime(note.date)}
+                                    </small> 
+                                </p> 
+                            </div> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+                    
+                  );
+                });
+              }
+            }
+          })}
+        </div>
 
-          if(conv.messages.length>0){
+        <Form>
+          <Form.Group>
+            <InputGroup>
+              <Form.Control
+                as="textarea"
+                required
+                value={text}
+                onChange={(e) => settext(e.target.value)}
+                style={{ height: "80px", resize: "none" }}
+              />
 
+              {/* <input type="file" id="myFile" name="filename" class="fa-solid fa-paperclip fa-1x"></input> */}
 
-   return (    conv.messages.map((message,idx)=>{
-
-          
-
-
-            return (
-              <div
-                // ref={lastMessage ? setRef : null}
-                key={idx}
-                className={`my-1 d-flex flex-column me-3   ${message.fromme ? 'align-self-end align-items-end' : 'align-items-start'}`}
-              >
-                <div
-                  className={`rounded px-2 py-1 me-3 ${message.fromme ? 'bg-primary text-white' : 'border ms-3 '}`}>
-                  {message.text}
-                </div>
-                <div className={`text-muted small me-3 ${message.fromme ? 'text-right' : ''}`}>
-                  {message.fromme ? 'You' : ' '}
-                </div>
-              </div>
-            )
-              })  )}  }})}
-
-
-
-
+              <Button onClick={handlesubmit}>Add</Button>
+            </InputGroup>
+          </Form.Group>
+        </Form>
       </div>
-
-      <Form onSubmit={handlesubmit}>
-        <Form.Group>
-          <InputGroup>
-            <Form.Control
-              as="textarea"
-              required
-              value={text}
-              onChange={e=>settext(e.target.value)}
-              style={{ height: "80px", resize: "none" }}
-            />
-          
-              <Button type="submit">Send</Button>
-          
-          </InputGroup>
-        </Form.Group>
-      </Form>
-    </div>
-  )
+    </>
+  );
 }
