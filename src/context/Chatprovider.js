@@ -24,7 +24,7 @@ export function Chatprovider({ ID, children }) {
     console.log(auth);
     const au = JSON.parse(auth);
 
-    const response = await fetch("http://localhost:3200/api/notes/addgroup/", {
+    const response = await fetch("https://noteschat-backend.onrender.com/api/notes/addgroup/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +44,7 @@ export function Chatprovider({ ID, children }) {
     console.log(auth);
     const au = JSON.parse(auth);
 
-    const response = await fetch("http://localhost:3200/api/notes/getnotes", {
+    const response = await fetch("https://noteschat-backend.onrender.com/api/notes/getnotes", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +63,7 @@ export function Chatprovider({ ID, children }) {
     console.log(auth);
     const au = JSON.parse(auth);
 
-    const response = await fetch("http://localhost:3200/api/notes/addnote", {
+    const response = await fetch("https://noteschat-backend.onrender.com/api/notes/addnote", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
