@@ -25,7 +25,7 @@ export default function LoginContext({ children }) {
     // const {setalert,setmessage}=Notescontext()
 
     try {
-      const response = await fetch("http://localhost:3200/api/auth/", {
+      const response = await fetch("https://noteschat-backend.onrender.com/api/auth/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -65,7 +65,7 @@ export default function LoginContext({ children }) {
   await  setauthtoken(resp);
 
     const response = await fetch(
-      "https://cloudnote-backend-etc8.onrender.com/api/auth/getuser",
+      "https://noteschat-backend.onrender.com/api/auth/getuser",
       {
         method: "POST",
         headers: {
@@ -93,7 +93,7 @@ export default function LoginContext({ children }) {
       console.log(JSON.stringify(formdata));
 
       const response = await fetch(
-        "https://cloudnote-backend-etc8.onrender.com/api/auth/reg",
+        "https://noteschat-backend.onrender.com/api/auth/reg",
         {
           method: "POST",
           headers: {
