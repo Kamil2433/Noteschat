@@ -53,7 +53,7 @@ export default function Openchatbox() {
               if (conv.notes.length > 0) {
                 return conv.notes.map((note, idx) => {
                   return (
-                    <div className="card mb-3 m-2 float-right" style={{maxWidth:"540px"}}> 
+                    <div className="card mb-3 m-2 " style={{maxWidth:"540px"}}> 
                     <div className="row g-0"> 
                         <div class="col-md-6"> 
                            
