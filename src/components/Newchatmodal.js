@@ -47,7 +47,7 @@ export default function Newchatmodal({onHide}) {
             Color
           </Form.Label>
           <Col sm="10">
-            <Form.Control type="text" placeholder="ID " ref={colorref} />
+            <Form.Control type="text" placeholder="Color " ref={colorref} />
           </Col>
         </Form.Group>
         <Button type="submit" variant="primary" >
